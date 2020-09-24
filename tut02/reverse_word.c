@@ -27,6 +27,18 @@ Word reverseBits(Word w) {
     return ret;
 }
 
+void printBits(Word w) {
+    int size = sizeof(Word) * 8;
+    for (int i = 0; i < size; i++) {
+        Word mask = 1u << (size - i - 1);
+        if (w & mask) {
+            printf("1");
+        } else {
+            printf("0");
+        }
+    }
+}
+
 // testing
 int main(void) {
     Word w1 = 0x01234567;
@@ -38,8 +50,15 @@ int main(void) {
     // 0101 => 1010 = A
     // 0110 => 0110 = 6
     // 0111 => 1110 = E
-    printf("0x%x -> 0x%x\n", w1, reverseBits(w1));
+
+    // Print out the bits of each value
+    printBits(w1);
+    printf(" -> ");
+    printBits(reverseBits(w1));
+    printf("\n");
+
+    // Check we got it right
     assert(reverseBits(w1) == 0xE6A2C480);
-    puts("Test passed!");
+    puts("Test passed!\n");
     return 0;
 }
