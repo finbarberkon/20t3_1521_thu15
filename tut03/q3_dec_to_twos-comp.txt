@@ -1,0 +1,11 @@
+Give a representation for each of the following decimal values in 16-bit twos-complement bit-strings. Show the value in binary, octal and hexadecimal.
+
+     DEC      BIN                   OCT       HEX
+i)   1      = 0000 0000 0000 0001 = 000 001 = 0x0001
+ii)  100    = 0000 0000 0110 0100 = 000 144 = 0x0064
+iii) 1000   = 0000 0000 0000 0000 = 000 000 = 0x0000
+iv)  10000  = 0000 0000 0000 0000 = 000 000 = 0x0000
+v)   100000 = 0000 0000 0000 0000 = 000 000 = 0x0000
+vi)  -5     = 0000 0000 0000 0101
+            = 1111 1111 1111 1011 = 177 773 = 0xFFFB
+vii) -100   = 0000 0000 0000 0000 = 000 000 = 0x0000
