@@ -9,37 +9,37 @@ cc:  .word 1    # 0x10010008
 # $t0, after each of the following statements (or pairs of statements)?
 
 la   $t0, aa
-# Address:  
-# Value:    
+# Address:  0x10010000
+# Value:    0x10010000
 
 lw   $t0, bb
-# Address:  
-# Value:    
+# Address:  0x10010004
+# Value:    666
 
 lb   $t0, bb
-# Address:  
-# Value:    
+# Address:  0x10010004
+# Value:    0
 
 lw   $t0, aa+4
-# Address:  
-# Value:    
+# Address:  0x10010004
+# Value:    666
 
 la   $t1, cc
 lw   $t0, ($t1)
-# Address:  
-# Value:    
+# Address:  0x10010008
+# Value:    1
 
 la   $t1, cc
 lw   $t0, 8($t1)
-# Address:  
-# Value:    
+# Address:  0x10010010
+# Value:    5
 
 li   $t1, 8
 lw   $t0, cc($t1)
-# Address:  
-# Value:    
+# Address:  0x10010010
+# Value:    5
 
 la   $t1, cc
 lw   $t0, 2($t1)
-# Address:  
-# Value:    
+# Address:  0x1001000A
+# Value:    CRASH

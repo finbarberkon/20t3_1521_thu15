@@ -1,7 +1,7 @@
 arithetic:
     add     Rd, Rs, Rt      # Rd = Rs + Rt   (signed)
     addu    Rd, Rs, Rt      # Rd = Rs + Rt   (unsigned)
-    addi    Rd, Rs, Imm     # Rd = Rs + Imm   (signed)
+    addi    Rd, Rs, Imm     # Rd = Rs + Imm  (signed)
     sub     Rd, Rs, Rt      # Rd = Rs - Rt   (signed)
     subu    Rd, Rs, Rt      # Rd = Rs - Rt   (unsigned)
     div     Rd, Rs, Rt      # Rd = Rs / Rt   (int division, signed)
