@@ -3,6 +3,8 @@
 
 main:
     # What do we need to save on the stack?
+    addi $sp, $sp, -4
+    sw   $ra, 0($sp)
 
     li   $a0, 1
     li   $a1, 2
@@ -20,6 +22,8 @@ main:
     syscall
 
     # What do we need to recover from the stack?
+    lw   $ra, 0($sp)
+    addi $sp, $sp, 4
 
     li   $v0, 0         # return 0 from function main
     jr   $ra            # return from function main
@@ -27,6 +31,11 @@ main:
 
 func1:
     # What do we need to save on the stack?
+    addi $sp, $sp, -16
+    sw   $ra, 0($sp)
+    sw   $s0, 4($sp)
+    sw   $s1, 8($sp)
+    sw   $s2, 12($sp)
 
     li   $s0, 10
     add  $s1, $s0, $s1
@@ -36,12 +45,22 @@ func1:
     jal  func2
 
     # What do we need to recover from the stack?
+    lw   $ra, 0($sp)
+    lw   $s0, 4($sp)
+    lw   $s1, 8($sp)
+    lw   $s2, 12($sp)
+    addi $sp, $sp, 16
 
-    j   $ra
+    jr  $ra
 
 
 func2:
     # What do we need to save on the stack?
+    addi $sp, $sp, -16
+    sw   $s3, 0($sp)
+    sw   $s0, 4($sp)
+    sw   $s1, 8($sp)
+    sw   $s2, 12($sp)
 
     li   $s0, 10
     add  $s1, $s0, $s1
@@ -51,8 +70,13 @@ func2:
     move $v0, $s3
 
     # What do we need to recover from the stack?
+    lw   $s3, 0($sp)
+    lw   $s0, 4($sp)
+    lw   $s1, 8($sp)
+    lw   $s2, 12($sp)
+    addi $sp, $sp, 16
 
-    j    $ra
+    jr   $ra
 
 
 func3:
@@ -67,4 +91,4 @@ func3:
 
     # What do we need to recover from the stack?
 
-    j    $ra
+    jr   $ra
