@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define MAX_LINE 65536
 
@@ -18,14 +19,19 @@ int main(int argc, char *argv[]) {
         char *pattern = argv[1];
         search_stream(stdin, "<stdin>", pattern);
     } else {
-        for (int arg = 1; arg < argc; arg++) {
+        for (int arg = 2; arg < argc; arg++) {
             char *pattern = argv[1];
             char *pathname = argv[arg];
 
-            // Open a file
-            // (check for errors)
+            FILE *file = fopen(pathname, "r");
+            if (file == NULL) {
+                perror(pathname);
+                exit(1);
+            }
 
             search_stream(file, pathname, pattern);
+
+            fclose(file);
         }
     }
     return 0;
@@ -33,9 +39,14 @@ int main(int argc, char *argv[]) {
 
 void search_stream(FILE *stream, char *name, char *pattern) {
     // Get lines
+    char buffer[MAX_LINE];
+    int line_num = 1;
 
-    // Check pattern is in the line and if so print
-
-    // name:line_num:line
-
+    while (fgets(buffer, MAX_LINE, stream) != NULL) {
+        // Check if the string is in the file, and print it out
+        if (strstr(buffer, pattern)) {
+            printf("%s:%d:%s", name, line_num, buffer);
+        }
+        line_num++;
+    }
 }
